@@ -25,8 +25,8 @@ module ShopifyAPI
           yield
         rescue ActiveResource::ResourceNotFound, ActiveResource::BadRequest, ActiveResource::UnauthorizedAccess,
             ActiveResource::ForbiddenAccess, ActiveResource::MethodNotAllowed, ActiveResource::ResourceGone,
-            ActiveResource::ResourceConflict, ActiveResource::ResourceInvalid => ex
-          raise ex
+            ActiveResource::ResourceConflict, ActiveResource::ResourceInvalid
+          raise
         rescue ActiveResource::ConnectionError, ActiveResource::ServerError,
             ActiveResource::ClientError, Timeout::Error, OpenSSL::SSL::SSLError => ex
           if retried <= THROTTLE_RETRY_MAX
@@ -36,7 +36,7 @@ module ShopifyAPI
             retried += 1
             retry
           else
-            raise ex
+            raise
           end
         rescue => ex
           if ex.message =~ /Connection timed out/
@@ -45,7 +45,7 @@ module ShopifyAPI
             retry
           else
             puts "Exception Raised: #{ex.class}"
-            raise ex
+            raise
           end
         end
       end
