@@ -27,6 +27,8 @@ jobs:
     # uses: ruby/setup-ruby@ec106b438a1ff6ff109590de34ddc62c540232e0
       with:
         ruby-version: 2.6
+      env: # Or as an environment variable
+        SHOPIFY_API_YAML: ${{ secrets.SHOPIFY_API_YAML }}
     - name: Install dependencies
       run: bundle install
     - name: Run tests
