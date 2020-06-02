@@ -14,7 +14,7 @@ describe "Throttle" do
   
   it "Can execute up to local max" do
     until ShopifyAPI.credit_maxed?
-      ShopifyAPI.throttle { ShopifyAPI::Shop.current }
+      ShopifyAPI::Shop.current
       puts "avail: #{ShopifyAPI.credit_left}, maxed: #{ShopifyAPI.credit_maxed?}"
     end
     ShopifyAPI.credit_maxed?.should be_true
