@@ -3,7 +3,7 @@ require './spec/boot'
 describe "Query" do
   it "Can retrieve an all query with empty params" do
     rs = ShopifyAPI.throttle { ShopifyAPI::Product.all }
-    expect(rs.length == ShopifyAPI.throttle { ShopifyAPI::Product.count } or rs.length == 50).to be true
+    expect(rs.length == ShopifyAPI.throttle { ShopifyAPI::Product.count } || rs.length == 50).to be true
   end
   
     
