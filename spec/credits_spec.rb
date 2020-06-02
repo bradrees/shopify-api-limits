@@ -6,9 +6,9 @@ describe "Throttle" do
     count = ShopifyAPI.credit_used
     limit = ShopifyAPI.credit_limit
     
-    (count < limit).should be_true
-    (count > 0).should be_true
-    ShopifyAPI.credit_maxed?.should be_false
+    expect(count < limit).to be true
+    expect(count > 0).to be true
+    expect(ShopifyAPI.credit_maxed?).to be false
     expect(ShopifyAPI.credit_left > 0).to be true
   end
   
@@ -17,7 +17,7 @@ describe "Throttle" do
       ShopifyAPI::Shop.current
       puts "avail: #{ShopifyAPI.credit_left}, maxed: #{ShopifyAPI.credit_maxed?}"
     end
-    ShopifyAPI.credit_maxed?.should be_true
+    expect(ShopifyAPI.credit_maxed?).to be true
     expect(ShopifyAPI.credit_left == 0).to be true
 
     puts "Response:"
