@@ -8,7 +8,7 @@ module ShopifyAPI
       def throttle(&block)
         retried ||= 0
         begin
-          if ShopifyAPI.credit_below?(THROTTLE_MIN_CREDIT)
+          if credit_below?(THROTTLE_MIN_CREDIT)
             sleep_for = [[THROTTLE_MIN_CREDIT - ShopifyAPI.credit_left, THROTTLE_RETRY_AFTER].min, 1].max
             puts "Credit Maxed: #{ShopifyAPI.credit_left}/#{ShopifyAPI.credit_limit}, sleeping for #{sleep_for} seconds"
             sleep sleep_for
@@ -48,6 +48,14 @@ module ShopifyAPI
             raise
           end
         end
+      end
+      
+      private 
+      
+      def credit_below?(value)
+        ShopifyAPI.credit_below?(value)
+      rescue ShopifyAPI::Limits::LimitUnavailable
+        false
       end
     end
   end
