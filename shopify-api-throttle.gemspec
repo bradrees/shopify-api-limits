@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version     = ShopifyAPI::Throttle::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Brad Rees"]
-  s.email       = ["brad@shopifypowertools.com"]
+  s.email       = ["brad@powertoolsapp.com"]
   s.homepage    = ""
   s.summary     = %q{This gem throttles API calls to keep within the limits of the ShopifyAPI gem}
   s.description = %q{This gem throttles API calls to keep within the limits of the ShopifyAPI gem}

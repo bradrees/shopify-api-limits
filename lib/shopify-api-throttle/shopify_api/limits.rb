@@ -6,7 +6,7 @@ module ShopifyAPI
 
       RETRY_AFTER = 10
 
-      CREDIT_LIMIT_HEADER_PARAM = 'http_x_shopify_shop_api_call_limit'
+      CREDIT_LIMIT_HEADER_PARAM = 'X-Shopify-Shop-Api-Call-Limit'
 
       ##
       # Have I reached my API call limit?
