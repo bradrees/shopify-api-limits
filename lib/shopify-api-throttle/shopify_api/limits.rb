@@ -20,12 +20,7 @@ module ShopifyAPI
       # @return {HTTPResponse}
       #
       def response
-        begin
-          Shop.current unless Base.connection.response
-        rescue ActiveResource::ClientError
-          return { CREDIT_LIMIT_HEADER_PARAM => '0/40', RETRY_AFTER_HEADER => RETRY_AFTER }
-        end
-        Base.connection.response
+        Base.connection.response || { CREDIT_LIMIT_HEADER_PARAM => '10/40', RETRY_AFTER_HEADER => 0 }
       end
 
       ##
